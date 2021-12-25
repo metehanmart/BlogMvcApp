@@ -1,0 +1,35 @@
+﻿
+
+@if (Request.IsAuthenticated)
+{
+<div class="giris justify-content-end">
+    @using (Html.BeginForm("LogOff", "Admin", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item dropdown" style="margin-right:10px">
+                <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    @User.Identity.Name
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="/Admin/List">Blog Listesi</a></li>
+                    <li><a class="dropdown-item" href="/Category/Index">Kategory Listesi</a></li>
+                    
+                </ul>
+            </li>
+            <li style="margin-left:10px"> <input type="submit" href="~/Admin/List" value="Çıkış Yap" class="btn btn-danger" /> </li>
+        </ul>
+    }
+</div>
+
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <!-- 
+        <li style="margin-right:10px">Html.ActionLink("Kayıt Ol", "Register", "Admin", routeValues: null, htmlAttributes: new { id = "registerLink" , class="btn btn-warning"})</li> -->
+        <li style="margin-left:10px">@Html.ActionLink("Giriş", "Index", "Admin", routeValues: null, htmlAttributes: new { id = "loginLink" , @class="btn btn-success"})</li>
+    </ul>
+
+}

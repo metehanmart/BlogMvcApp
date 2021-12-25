@@ -1,0 +1,49 @@
+﻿@model BlogMvcApp.Models.Admin
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/sifreGosterme.js"></script>
+
+@using (Html.BeginForm("Index", "Admin", FormMethod.Post))
+{
+   
+<div id="login">
+    <div class="container bg-light">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="" method="post">
+                        <h3 class="text-center text-info">Login</h3>
+                        <div class="form-group" style="margin-bottom:20px">
+                            
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                   <span class="input-group-text"><i class="fas fa-user"></i></span>  
+                                </div>
+                                @Html.TextBoxFor(m => m.userName, null,new { @class = "form-control", @placeholder = "Kullanıcı Adı" })
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:20px; margin-bottom:20px">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                </div>
+                                @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "Şifre", id="sifreKutusu"})
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" onclick="sifreGosteren()" style="margin-block-end:15px; margin-inline:10px">Şifreyi Göster
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Giriş Yap" style="margin-left:20px">
+                        </div>
+                            @ViewBag.Message
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+}

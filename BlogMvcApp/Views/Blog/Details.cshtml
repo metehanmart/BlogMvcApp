@@ -1,0 +1,71 @@
+﻿@model BlogMvcApp.Models.Blog
+
+@{
+    ViewBag.Title = "Details";
+}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/v4-shims.css">
+
+<h1>@Model.Baslik</h1>
+<hr />
+<p>
+    <i class="fas fa-calendar-day"></i>
+    @Model.EklenmeTarihi
+</p>
+<hr />
+<img class="img-thumbnail" src="https://www.wine4food.com/wp-content/uploads/2016/07/full-width-placeholder-900x300.png" alt="">
+<hr />
+<blockquote>
+    <p>@Model.Aciklama</p>
+</blockquote>
+
+<p style="text-align:justify">
+    @Model.Icerik
+</p>
+<div class="comment">
+    <div class="well">
+        <h4>Yorum yap:</h4>
+        <form role="form">
+            <div class="form-group">
+
+                <textarea class="form-control" rows="3"></textarea>
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+    <hr />
+    <div class="bd-example">
+        <div class="media">
+            <div class="media-body">
+                <h5 class="mt-0">Top-aligned media</h5>
+                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+            </div>
+        </div>
+    </div>
+    <hr />
+</div>
+
+@section SagKolon{
+    <div class="well">
+        <h4>Blog Search</h4>
+        <div class="input-group">
+            <input type="text" class="form-control" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </span>
+        </div>
+        <!--input grup-->
+    </div>
+
+    @{Html.RenderAction("KategoriListesi", "Category");
+    }
+
+}
+
+
+
+
+

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<BlogMvcApp.Models.BlogModel>
+@{
+    ViewBag.Title = "Blog Listesi";
+}
+
+<h2>Blog Listesi</h2>
+
+@Html.Partial("~/Views/Blog/BlogListesi.cshtml", Model)
+
+
+@section SagKolon{
+    
+    @Html.Partial("Search")
+
+    @{Html.RenderAction("KategoriListesi", "Category");
+    }
+
+}
+
+
+
+
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />

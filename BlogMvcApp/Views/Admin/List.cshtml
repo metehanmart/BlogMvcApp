@@ -1,0 +1,111 @@
+﻿
+@model IEnumerable<BlogMvcApp.Models.Blog>
+
+@{
+    ViewBag.Title = "Blog Listesi";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/v4-shims.css">
+<h2>Blog Listesi</h2>
+<p>
+    @ViewBag.Username
+</p>
+<style>
+    .yeniBlogEkle{
+        text-decoration:none;
+    }
+</style>
+<div class="btn btn-primary">
+    <label class="link-light">
+        @Html.ActionLink("Yeni Blog Ekle", "Create",null,new {@class="yeniBlogEkle",style="color:white"} )
+    </label>
+    
+</div>
+@if (TempData["Blog"] != null)
+{
+
+    var blog = (BlogMvcApp.Models.Blog)TempData["Blog"];
+
+    <div class="alert alert-success" role="alert">
+        <strong><i class="fas fa-check"></i> @blog.Baslik</strong> Kayıt edildi
+    </div>
+}
+<table class="table table-bordered table-hovered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.KategoriAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EklenmeTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Onay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Anasayfa)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.KategoriAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Baslik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aciklama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EklenmeTarihi)
+            </td>
+            <td>
+                @if (item.Onay == true)
+                {
+                    <p class="p-3 mb-2 bg-success text-white">Onaylı</p>
+                }
+                else
+                {
+                    <p class="p-3 mb-2 bg-danger text-white">Onaysız</p>
+
+                }
+                @Html.DisplayFor(modelItem => item.Onay)
+            </td>
+            <td>
+                @if (item.Anasayfa == true)
+                {
+                    <p class="p-3 mb-2 bg-success text-white">Ana Sayfada</p>
+                }
+                else
+                {
+                    <p class="p-3 mb-2 bg-danger text-white">Ana Sayfa Değil</p>
+                }
+                @Html.DisplayFor(modelItem => item.Anasayfa)
+            </td>
+            <td>
+                <form style="display:inline">
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs btn-sm" }) |
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs btn-sm" })
+                </form>
+            </td>
+        </tr>
+    }
+
+</table>

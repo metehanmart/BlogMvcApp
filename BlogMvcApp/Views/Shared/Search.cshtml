@@ -1,0 +1,18 @@
+﻿@using (Html.BeginForm("List","Blog",FormMethod.Get))
+{
+    <div class="well" style="margin-top:15px">
+        <h4>Blog Arama</h4>
+        <hr />
+        <div class="input-group" style="padding-bottom:15px">
+            @Html.TextBox("q",null,new {@class="form-control"})
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </span>
+        </div> 
+        <!--input grup-->
+    </div>
+}
+
+
